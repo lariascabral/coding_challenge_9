@@ -17,7 +17,7 @@ class Employee {
     } ; // Function to calculate annual salary
 } ;
 
-//Test Data
+// Test Data
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000) ;
 console.log(emp1.getDetails()); 
 // Expected output: "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
@@ -35,7 +35,7 @@ class Manager extends Employee {
     } ; // Creating a class extention for managers
 
     getDetails() {
-    return  `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary $${this.salary}, Team Size: ${this.teamSize}`
+    return  `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary $${this.salary}, Team Size: ${this.teamSize}`
     } ;
 
     calculateBonus() {
@@ -47,10 +47,37 @@ class Manager extends Employee {
     } ;
 } ;
 
-//Test Data
+// Test Data
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5) ;
 console.log(mgr1.getDetails()) ;
 // Expected output: "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
 
 console.log(mgr1.calculateBonus()) ; 
 // Expected output: 9600
+
+
+// Task 3 - Created Company Class
+
+class Company {
+    constructor(name) {
+        this.name = name ;
+        this.employees = [] ;                       // Initiating the employees' array
+    } ;
+
+    addEmployee(employee) {
+        this.employees.push(employee) ;             // Method that adds each neew employee to the array
+    } ;
+
+    listEmployees() {
+        this.employees.forEach(emp => console.log(emp.getDetails()))
+    } ;
+} ;
+
+// Test Data
+const company = new Company("TechCorp");
+company.addEmployee(emp1);
+company.addEmployee(mgr1);
+company.listEmployees();
+// Expected output:
+// "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
+// "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
