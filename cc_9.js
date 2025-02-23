@@ -10,11 +10,11 @@ class Employee {
 
     getDetails() {
         return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary $${this.salary}`
-    } ; // Function to showcase the profile details of employees
+    } ; // Method to showcase the profile details of employees
 
     calculateAnnualSalary() {
         return this.salary * 12 ;
-    } ; // Function to calculate annual salary
+    } ; // Method to calculate annual salary
 } ;
 
 // Test Data
@@ -43,7 +43,7 @@ class Manager extends Employee {
     } ;
 
     calculateAnnualSalary() {
-        return super.calculateAnnualSalary() + this.calculateBonus()
+        return super.calculateAnnualSalary() + this.calculateBonus()        // Task 4 requirement: Updating salary calculation with a method specifically for managers
     } ;
 } ;
 
@@ -69,11 +69,19 @@ class Company {
     } ;
 
     listEmployees() {
-        this.employees.forEach(emp => console.log(emp.getDetails()))
+        this.employees.forEach(emp => console.log(emp.getDetails()))        // Listing method of  all employees in the console separately
     } ;
+
+
+// Task 4 - Implemented Payroll System
+
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0)
 } ;
 
-// Test Data
+} ;
+
+// Test Data --- Task 3
 const company = new Company("TechCorp");
 company.addEmployee(emp1);
 company.addEmployee(mgr1);
@@ -81,3 +89,9 @@ company.listEmployees();
 // Expected output:
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
+
+
+// Test Data --- Task 4
+console.log(company.calculateTotalPayroll()); 
+// Expected output: 165600 (assuming emp1 and mgr1 salaries)
+
